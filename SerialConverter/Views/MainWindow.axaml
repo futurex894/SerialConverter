@@ -1,0 +1,64 @@
+<suki:SukiWindow xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SerialConverter.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="SerialConverter.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="调试工具箱"
+        xmlns:suki="https://github.com/kikipoulet/SukiUI"
+		    xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        xmlns:model="using:SerialConverter.Model"
+		    BackgroundStyle="Bubble"
+		    BackgroundAnimationEnabled="False"
+        >
+  <!--<Design.DataContext>
+        -->
+  <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+  <!--
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>-->
+  <suki:SukiWindow.LogoContent>
+    <materialIcons:MaterialIcon Kind="Cat" Width="20" Height="20" VerticalAlignment="Center" Foreground="{DynamicResource SukiPrimaryColor}" >
+      <materialIcons:MaterialIcon.Transitions>
+        <Transitions>
+          <BrushTransition Property="Foreground" Duration="{DynamicResource ShortAnimationDuration}" />
+        </Transitions>
+      </materialIcons:MaterialIcon.Transitions>
+    </materialIcons:MaterialIcon>
+  </suki:SukiWindow.LogoContent>
+  <suki:SukiWindow.Hosts>
+    <suki:SukiToastHost Name="SukiToastHosts"></suki:SukiToastHost>
+    <suki:SukiDialogHost Name="SukiDialogHosts"></suki:SukiDialogHost>
+  </suki:SukiWindow.Hosts>
+  <Grid>
+    <suki:SukiSideMenu IsSearchEnabled="True" ItemsSource="{Binding MenuQueue}">
+      <suki:SukiSideMenu.Styles>
+        <Style Selector="Image.AppIcon">
+          <Setter Property="Transitions">
+            <Transitions>
+              <DoubleTransition Property="Opacity" Duration="0.1" />
+            </Transitions>
+          </Setter>
+          <Style Selector="^:pointerover">
+            <Setter Property="Opacity" Value="0.5" />
+          </Style>
+        </Style>
+      </suki:SukiSideMenu.Styles>
+      <suki:SukiSideMenu.HeaderContent>
+        <materialIcons:MaterialIcon Kind="Cat" Width="80" Height="80"/>
+      </suki:SukiSideMenu.HeaderContent>
+      <suki:SukiSideMenu.ItemTemplate >
+        <DataTemplate x:DataType="model:MenuModel">
+          <suki:SukiSideMenuItem Classes="Compact" Header="{Binding Name}">
+            <suki:SukiSideMenuItem.Icon>
+              <materialIcons:MaterialIcon Kind="{Binding Image}" />
+            </suki:SukiSideMenuItem.Icon>
+          </suki:SukiSideMenuItem>
+        </DataTemplate>
+      </suki:SukiSideMenu.ItemTemplate>
+    </suki:SukiSideMenu>
+  </Grid>
+</suki:SukiWindow>

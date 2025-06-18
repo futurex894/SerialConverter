@@ -1,0 +1,225 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
+             x:Class="SerialConverter.Plugins.VirtualSerial.MainUI"
+             xmlns:vm="using:SerialConverter.Plugins.VirtualSerial"
+             x:DataType="vm:MainUIViewModel"
+             xmlns:theme="using:SukiUI.Theme"
+             xmlns:content="using:SukiUI.Content"
+             Name="ComPair"         
+             xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:converters="using:SerialConverter.Plugins.VirtualSerial.Converter"
+             >
+  <UserControl.Resources>
+    <converters:ModeToBool x:Key="ModeTo"></converters:ModeToBool>
+    <converters:BoolToColor x:Key="BoolTo"></converters:BoolToColor>
+    <converters:ModeToString x:Key="ModeTOString"/>
+  </UserControl.Resources>
+  <UserControl.Styles>
+    <Style Selector="ListBox.DataALL" >
+      <Setter Property="ItemsPanel">
+        <ItemsPanelTemplate>
+          <WrapPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+      </Setter>
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Name="border"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="0"
+                  ClipToBounds="{TemplateBinding ClipToBounds}"
+                  CornerRadius="{TemplateBinding CornerRadius}">
+            <Border.Resources>
+              <theme:BiggestItemListBoxConverter x:Key="BiggestListItem" />
+            </Border.Resources>
+            <Panel>
+              <ScrollViewer Name="PART_ScrollViewer"
+                            HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                            VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+                <ItemsPresenter Name="PART_ItemsPresenter" Margin="{TemplateBinding Padding}" ItemsPanel="{TemplateBinding ItemsPanel}"/>
+              </ScrollViewer>
+            </Panel>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+      <Setter Property="ItemTemplate">
+        <DataTemplate x:DataType="vm:DataInfo">
+          <suki:GlassCard Width="228" Padding="15 5 15 5" Height="100">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+              </Grid.RowDefinitions>
+              <Border BorderBrush="#CCC" BorderThickness="0 0 0 1"></Border>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="{Binding Info}"></TextBlock>
+              </StackPanel>
+              <Grid Grid.Row="1" Margin="0 2 0 0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="48"/>
+                  <ColumnDefinition Width="72"/>
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                  <TextBlock VerticalAlignment="Center">状态</TextBlock>
+                  <materialIcons:MaterialIcon Kind="AccessPoint" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding Status,Converter={StaticResource BoolTo}}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                  <TextBlock VerticalAlignment="Center" Margin="5 0 0 0">操作</TextBlock>
+                  <Button Command="{Binding RemoveComPair}" Width="30" Padding="0 5 0 5" Margin="5 0 0 0">
+                    <materialIcons:MaterialIcon Kind="TrashCanOutline" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" />
+                  </Button>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                  <suki:GlassCard Padding="3 0 3 0" CornerRadius="5" BorderThickness="2" Background="#eef2fa">
+                    <TextBlock FontWeight="Heavy" VerticalAlignment="Center" Text="{Binding WorkModes,Converter={StaticResource ModeTOString},Mode=OneWay}"></TextBlock>
+                  </suki:GlassCard>
+                </StackPanel>
+              </Grid>
+            </Grid>
+          </suki:GlassCard>
+        </DataTemplate>
+      </Setter>
+    </Style>
+    <Style Selector="ListBox.DataALL ListBoxItem">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Name="BorderBasicStyle"
+                  Margin="5"
+                  Padding="0,0"
+                  CornerRadius="20">
+            <DockPanel>
+              <PathIcon Name="CheckSelected"
+                        Width="17"
+                        Height="17"
+                        Margin="8,0,0,0"
+                        Data="{x:Static content:Icons.CircleCheck}"
+                        DockPanel.Dock="Right"
+                        Foreground="{DynamicResource SukiPrimaryColor}">
+                <PathIcon.Transitions>
+                  <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                  </Transitions>
+                </PathIcon.Transitions>
+              </PathIcon>
+              <ContentPresenter Name="PART_ContentPresenter"
+                                Margin="0,0,0,0"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                CornerRadius="{TemplateBinding CornerRadius}" />
+            </DockPanel>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="AutoCompleteBox:pointerover">
+      <Setter Property="IsDropDownOpen" Value="True"> </Setter>
+    </Style>
+    
+    <Style Selector="Button">
+      <Setter Property="FontSize" Value="12"/>
+    </Style>
+  </UserControl.Styles>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition Width="200"/>
+    </Grid.ColumnDefinitions>
+    <Grid Grid.Column="0">
+      <ListBox Classes="DataALL WithoutCheck" ItemsSource="{Binding DataList}"/>
+    </Grid>
+    <Grid Grid.Column="1" Margin="5">
+      <suki:GlassCard Padding="5">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="110"/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+           <StackPanel>
+            <RadioButton Classes="GigaChips" Content="虚拟串口"  GroupName="R2" IsChecked="{Binding ComMode}" />
+            <RadioButton Classes="GigaChips" Content="虚拟串口转TCP" GroupName="R2" IsChecked="{Binding TcpMode}"/>
+            <!--<RadioButton Classes="GigaChips" Content="虚拟串口转Udp" GroupName="R2" IsChecked="{Binding UdpMode}"/>-->
+          </StackPanel>
+          <Grid Grid.Row="1">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+              
+              <StackPanel Width="180" HorizontalAlignment="Left" Margin="0 10 0 0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                  <StackPanel Margin="5 0 5 0" Width="170">
+                     <TextBlock Text="虚拟串口" Margin="5 0 0 0" FontSize="12"></TextBlock>
+                  </StackPanel>
+                  <TextBox MinWidth="100" Text="{Binding MainComName}" Watermark="COM名称"></TextBox>
+                </StackPanel>
+              </StackPanel>
+              
+               <StackPanel IsVisible="{Binding ComMode}" Width="180" HorizontalAlignment="Left" Margin="0 5 0 0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                  <StackPanel Margin="5 0 5 0"  Width="170">
+                     <TextBlock Text="虚拟串口" Margin="5 0 0 0" FontSize="12"></TextBlock>
+                  </StackPanel>
+                  <TextBox MinWidth="100" Text="{Binding SlaveComName}" Watermark="COM名称"></TextBox>
+                </StackPanel>
+              </StackPanel>
+
+              <StackPanel IsVisible="{Binding TcpMode}"  Orientation="Vertical" HorizontalAlignment="Left">
+                <StackPanel Margin="5 0 5 0" Width="170">
+                  <TextBlock Text="TCP参数" FontSize="12" Margin="5 0 0 0"></TextBlock>
+                </StackPanel>
+                <ComboBox ItemsSource="{Binding TCPModeModeList}" SelectedValue="{Binding TcpWorkMode}">
+                </ComboBox>
+                <StackPanel IsVisible="{Binding TcpWorkMode,Converter={StaticResource ModeTo}}">
+                  <TextBlock Text="Remote" Margin="12 0 0 0" FontSize="10" ></TextBlock>
+                  <AutoCompleteBox CornerRadius="10" Text="{Binding RemoteIP}" BorderBrush="#CCC" BorderThickness="1"  ItemsSource="{Binding IPList}"></AutoCompleteBox>
+                  <NumericUpDown FormatString="F0" Value="{Binding RemotePort}" Margin="5 4 5 0"></NumericUpDown>
+                </StackPanel>
+                <StackPanel>
+                  <TextBlock Text="Local" Margin="12 0 0 0" FontSize="10" ></TextBlock>
+                  <AutoCompleteBox CornerRadius="10" Text="{Binding LocalIP}" BorderBrush="#CCC" BorderThickness="1"  ItemsSource="{Binding IPList}"></AutoCompleteBox>
+                  <NumericUpDown FormatString="F0" Value="{Binding LocalPort}" Margin="5 4 5 0"></NumericUpDown>
+                </StackPanel>
+              </StackPanel>
+              
+               <StackPanel IsVisible="False" Orientation="Vertical" HorizontalAlignment="Left">
+                <StackPanel Margin="5 0 5 0">
+                  <TextBlock Text="UDP参数"  Margin="5 0 0 0"></TextBlock>
+                  <Border Width="170" BorderThickness="0 1.5 0 0" BorderBrush="#E0E0E0"></Border>
+                </StackPanel>
+
+                 <StackPanel Margin="0 5 0 0">
+                   <TextBlock Text="Remote" Margin="12 0 0 0" FontSize="10" ></TextBlock>
+                   <Border Width="170" BorderThickness="0 1.5 0 0" BorderBrush="#E0E0E0"></Border>
+                   <AutoCompleteBox CornerRadius="10" Text="{Binding RemoteIP}" BorderBrush="#CCC" BorderThickness="1"  ItemsSource="{Binding IPList}"></AutoCompleteBox>
+                   <NumericUpDown FormatString="F0" Value="{Binding RemotePort}" Margin="5 4 5 0"></NumericUpDown>
+                 </StackPanel>
+                 <StackPanel>
+                   <TextBlock Text="Local" Margin="12 0 0 0" FontSize="10" ></TextBlock>
+                   <Border Width="170" BorderThickness="0 1.5 0 0" BorderBrush="#E0E0E0"></Border>
+                   <AutoCompleteBox CornerRadius="10" Text="{Binding LocalIP}" BorderBrush="#CCC" BorderThickness="1"  ItemsSource="{Binding IPList}"></AutoCompleteBox>
+                   <NumericUpDown FormatString="F0" Value="{Binding LocalPort}" Margin="5 4 5 0"></NumericUpDown>
+                 </StackPanel>
+              </StackPanel>
+              
+              <Button Command="{Binding AddPair}" Content="添加" Margin="5"></Button>
+              <Button Command="{Binding ListPair}" Content="刷新" Margin="5"></Button>
+            </StackPanel>
+          </Grid>
+        </Grid>
+      </suki:GlassCard>
+    </Grid>
+    
+  </Grid>
+</UserControl>

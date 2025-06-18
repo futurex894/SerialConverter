@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialConverter", "SerialConverter\SerialConverter.csproj", "{94DCF067-CF2F-4706-8D02-4A2703424084}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{20CD7E9F-48FC-4977-8F09-3A6B44222871}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{D7363874-D386-476A-ABBC-DF52A0E2D628}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialConverter.Core", "SerialConverter.Core\SerialConverter.Core.csproj", "{2E75012F-C301-464F-8C9A-32F7BC642FA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialConverter.Plugins.VirtualPort", "SerialConverter.Plugins.VirtualPort\SerialConverter.Plugins.VirtualPort.csproj", "{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94DCF067-CF2F-4706-8D02-4A2703424084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94DCF067-CF2F-4706-8D02-4A2703424084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94DCF067-CF2F-4706-8D02-4A2703424084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94DCF067-CF2F-4706-8D02-4A2703424084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E75012F-C301-464F-8C9A-32F7BC642FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E75012F-C301-464F-8C9A-32F7BC642FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E75012F-C301-464F-8C9A-32F7BC642FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E75012F-C301-464F-8C9A-32F7BC642FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E75012F-C301-464F-8C9A-32F7BC642FA0} = {20CD7E9F-48FC-4977-8F09-3A6B44222871}
+		{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA} = {D7363874-D386-476A-ABBC-DF52A0E2D628}
+	EndGlobalSection
+EndGlobal
