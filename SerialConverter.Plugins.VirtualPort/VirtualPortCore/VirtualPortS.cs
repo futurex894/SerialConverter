@@ -90,7 +90,7 @@ namespace SerialConverter.Plugins.VirtualSerial.VirtualPortCore
         /// <returns></returns>
         public string[] CreateVirtualSerialPort(string first = "COM201", string second = "COM202")
         {
-            return CommandRuner.RunCommandWithProcess($"install PortName={first},EmuBR=yes PortName={second},EmuBR=yes");
+            return CommandRuner.RunCommandWithProcess($"install PortName={first},EmuBR=yes PortName={second},EmuBR=yes,HiddenMode=no");
         }
 
         /// <summary>

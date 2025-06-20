@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialConverter", "SerialConverter\SerialConverter.csproj", "{94DCF067-CF2F-4706-8D02-4A2703424084}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialConverter.Core", "SerialConverter.Core\SerialConverter.Core.csproj", "{2E75012F-C301-464F-8C9A-32F7BC642FA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialConverter.Plugins.VirtualPort", "SerialConverter.Plugins.VirtualPort\SerialConverter.Plugins.VirtualPort.csproj", "{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialConverter.Plugins.About", "SerialConverter.Plugins.About\SerialConverter.Plugins.About.csproj", "{DE303FBA-67B1-4972-82DF-1786D1C82FA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE303FBA-67B1-4972-82DF-1786D1C82FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE303FBA-67B1-4972-82DF-1786D1C82FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE303FBA-67B1-4972-82DF-1786D1C82FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE303FBA-67B1-4972-82DF-1786D1C82FA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +44,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2E75012F-C301-464F-8C9A-32F7BC642FA0} = {20CD7E9F-48FC-4977-8F09-3A6B44222871}
 		{F3EC03C8-6386-4C7A-BB1C-2CCF0CE3EBBA} = {D7363874-D386-476A-ABBC-DF52A0E2D628}
+		{DE303FBA-67B1-4972-82DF-1786D1C82FA9} = {D7363874-D386-476A-ABBC-DF52A0E2D628}
 	EndGlobalSection
 EndGlobal

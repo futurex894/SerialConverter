@@ -55,9 +55,9 @@ namespace SerialConverter.Plugins.VirtualSerial.DBHelper
 
     public enum WorkMode
     {
-        PortToPort,
-        PortToTcpClient,
-        PortToTcpServer,
-        PortToUdp
+        PortToPort = 0,
+        PortToTcpClient = 1,
+        PortToTcpServer = 2,
+        PortToUdp = 3
     }
 }

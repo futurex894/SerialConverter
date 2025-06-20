@@ -1,4 +1,3 @@
-using Avalonia.Controls;
 using SerialConverter.Core;
 using SerialConverter.Model;
 using SerialConverter.ViewModels;
@@ -21,6 +20,7 @@ namespace SerialConverter.Views
             Object[] Views = new Object[]
             {
                 new Plugins.VirtualSerial.ModuleInfo(),
+                new Plugins.About.ModuleInfo(),
             };
             CreateViewList(Views);
         }

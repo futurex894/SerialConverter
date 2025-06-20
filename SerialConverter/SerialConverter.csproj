@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SerialConverter.Core\SerialConverter.Core.csproj" />
+    <ProjectReference Include="..\SerialConverter.Plugins.About\SerialConverter.Plugins.About.csproj" />
     <ProjectReference Include="..\SerialConverter.Plugins.VirtualPort\SerialConverter.Plugins.VirtualPort.csproj" />
   </ItemGroup>
 </Project>

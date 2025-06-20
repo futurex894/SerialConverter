@@ -158,15 +158,8 @@ namespace SerialConverter.Plugins.VirtualSerial
                     string[] Info = Array.Empty<string>();
                     await Task.Run(() =>
                     {
-                        try
-                        {
-                            Info = VirtualPorter.CreateVirtualSerialPort(MainComName);
-                            Info = Info.Select(x => x.Replace("       ", "")).ToArray();
-                        }
-                        catch (Exception ex)
-                        {
-                            string a = "";
-                        }
+                        Info = VirtualPorter.CreateVirtualSerialPort(MainComName);
+                        Info = Info.Select(x => x.Replace("       ", "")).ToArray();
                     });
                     string[] InstallInfo = Info.Where(x => (!x.Contains("ComDB"))&&(!x.Contains("Reboot"))).ToArray();
                     CrossoverPortPair? crossover = InstallInfo.Select(p =>
@@ -291,8 +284,9 @@ namespace SerialConverter.Plugins.VirtualSerial
                  
                     if(VirtualPorter != null) Info = VirtualPorter.List();
                     #region 移除缺少对
-                    ComToInfo[] Wait = comToInfos.Where(x => Info.Where(y => y.PairNumber == x.Index).Count() <= 0).ToArray();
-                    DB.DataBase.Delete<ComToInfo>(Wait).ExecuteAffrows();
+                    List<ComToInfo> Wait = comToInfos.Where(x => Info.Where(y => y.PairNumber == x.Index).Count() <= 0).ToList();
+
+                    foreach(ComToInfo info in Wait)  DB.DataBase.Delete<ComToInfo>().Where(x=>x.Index==info.Index).ExecuteAffrows();
                     #endregion
                     #region 移除多余的对
                     int[] WaitRemoveList = Info.Where(x => comToInfos.Where(y => y.Index == x.PairNumber).Count() <= 0).Select(x => x.PairNumber).ToArray();

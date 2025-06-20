@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
+             xmlns:vm="using:SerialConverter.Plugins.About"
+             x:Class="SerialConverter.Plugins.About.MainUI"
+             x:DataType="vm:MainUIViewModel"
+             >
+  <ScrollViewer>
+    <StackPanel Margin="20 0 20 20 " suki:StackPanelExtensions.AnimatedScroll="True">
+      <TextBlock FontSize="40" FontWeight="Medium">About</TextBlock>
+      <Border Height="1" Margin="0,0,0,10" Background="{DynamicResource SukiControlBorderBrush}" />
+      <TextBlock Text="{Binding SystemInfo}" TextWrapping="Wrap"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
